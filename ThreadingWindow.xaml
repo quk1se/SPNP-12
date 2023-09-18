@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPNP_12"
         mc:Ignorable="d"
-        Title="ThreadingWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="ThreadingWindow" Height="800" Width="800">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+        <Label>МНОГОПОТОЧНОСТЬ</Label>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="StartBtn1" Content="Start" Click="StartBtn1_Click"/>
+            <ProgressBar Width="200" x:Name="ProgressBar1" Margin="15 0"/>
+            <Button Content="Stop" x:Name="StopBtn1" Click="StopBtn1_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 15">
+            <Button x:Name="StartBtn2" Content="Start" Click="StartBtn2_Click"/>
+            <ProgressBar Width="200" x:Name="ProgressBar2" Margin="15 0"/>
+            <Button Content="Stop" x:Name="StopBtn2" Click="StopBtn2_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 15">
+            <Button x:Name="StartBtn3" Content="Start" Click="StartBtn3_Click"/>
+            <ProgressBar Width="200" x:Name="ProgressBar3" Margin="15 0"/>
+            <Button Content="Stop" x:Name="StopBtn3" Click="StopBtn3_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 15">
+            <Button x:Name="StartBtn4" Content="Start" Click="StartBtn4_Click"/>
+            <ProgressBar Width="200" x:Name="ProgressBar4" Margin="15 0"/>
+            <Button Content="Stop" x:Name="StopBtn4" Click="StopBtn4_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 15">
+            <Label Content="Work time" Margin="0 8 0 0"/>
+            <TextBox x:Name="WorkTimeTxtBox" Text="3" Margin="0 8 0 0" VerticalContentAlignment="Center"/>
+            <Label Content="second(s)" Margin="0 8 0 0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 15">
+            <Button x:Name="StartBtn5" Content="Start" Click="StartBtn5_Click"/>
+            <ProgressBar Width="200" x:Name="ProgressBar5" Margin="15 0"/>
+            <Button Content="Stop" x:Name="StopBtn5" Click="StopBtn5_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 15">
+            <Button x:Name="StartBtn6" Content="Start" Click="StartBtn6_Click"/>
+            <StackPanel Orientation="Vertical" Margin="0 15">
+                <TextBox x:Name="WorkTimeTxtBox1" Text="3" Margin="0 8 0 0" VerticalContentAlignment="Top" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="WorkTimeTxtBox2" Text="3" Margin="0 8 0 0" VerticalContentAlignment="Top" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="WorkTimeTxtBox3" Text="3" Margin="0 8 0 0" VerticalContentAlignment="Top" HorizontalContentAlignment="Center"/>
+                <ProgressBar Width="200" x:Name="ProgressBar6" Height="15" Margin="15 5"/>
+                <ProgressBar Width="200" x:Name="ProgressBar61" Height="15" Margin="15 5"/>
+                <ProgressBar Width="200" x:Name="ProgressBar62" Height="15" Margin="15 5"/>
+            </StackPanel>
+            
+            <Button Content="Stop" x:Name="StopBtn6" Click="StopBtn6_Click"/>
+        </StackPanel>
+    </StackPanel>
 </Window>
