@@ -24,7 +24,7 @@ namespace SPNP_12
         {
             InitializeComponent();
         }
-
+        #region 1-2
         private void StopBtn1_Click(object sender, RoutedEventArgs e)
         {
 
@@ -58,12 +58,13 @@ namespace SPNP_12
             }
             ProgressBar2.Value = 100;
         }
+#endregion
+        #region 3
         private bool isStopped3 { get; set; }
         private void StopBtn3_Click(object sender, RoutedEventArgs e)
         {
             isStopped3 = true;
         }
-
         private void StartBtn3_Click(object sender, RoutedEventArgs e)
         {
             new Thread(IncrementProgress3).Start();
@@ -81,6 +82,8 @@ namespace SPNP_12
 
 
         }
+#endregion
+        #region 4
         private bool isStopped4 { get; set; }
         private Thread thread4;
         private void StartBtn4_Click(object sender, RoutedEventArgs e)
@@ -115,6 +118,8 @@ namespace SPNP_12
             thread4 = null;
             Dispatcher.Invoke( () =>StartBtn4.IsEnabled = true);
         }
+#endregion
+        #region 5
         private bool isStopped5 { get; set; }
         public Thread? thread5;
         CancellationTokenSource cts;
@@ -161,7 +166,8 @@ namespace SPNP_12
             public int WorkTime { get; set; }
             public CancellationToken CancelToken { get; set; }
         }
-
+        #endregion
+        #region 6
         private void StopBtn6_Click(object sender, RoutedEventArgs e)
         {
             cts6?.Cancel();
@@ -218,7 +224,8 @@ namespace SPNP_12
             {
                 MessageBox.Show("Thread 5 started with invalid argument");
             }
-
         }
+        #endregion
+
     }
 }

@@ -31,5 +31,19 @@ namespace SPNP_12
             new ThreadingWindow().ShowDialog();
             this.Show();
         }
+
+        private void SynchroBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new SynchroWindow().ShowDialog();
+            this.Show();
+        }
+
+        private void ManyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new TaskWindow().ShowDialog();
+            this.Show();
+        }
     }
 }
