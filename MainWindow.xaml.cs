@@ -52,5 +52,12 @@ namespace SPNP_12
             new CancelWindow().ShowDialog();
             this.Show();
         }
+
+        private void ProcessBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new ProcessWindow().ShowDialog();
+            this.Show();
+        }
     }
 }

@@ -12,5 +12,6 @@
         <Button x:Name="SynchroBtn" Margin="20 7" Click="SynchroBtn_Click">Синхронизация</Button>
         <Button x:Name="ManyBtn" Margin="20 7" Click="ManyBtn_Click">Многозадачность</Button>
         <Button x:Name="CancelBtn" Margin="20 7" Click="CancelBtn_Click">Отмена задач</Button>
+        <Button x:Name="ProcessBtn" Margin="20 7" Click="ProcessBtn_Click">Процессы</Button>
     </StackPanel>
 </Window>
