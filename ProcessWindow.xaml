@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPNP_12"
         mc:Ignorable="d"
-        Title="ProcessWindow" Height="500" Width="800">
+        Title="ProcessWindow" Height="600" Width="800">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Label HorizontalAlignment="Left" FontSize="18" FontWeight="Bold">Processes: </Label>
+            <Label HorizontalAlignment="Left" FontSize="18" FontWeight="Bold">Processes:</Label>
             <Label x:Name="processcount" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left"/>
             <Label HorizontalAlignment="Left" FontSize="18" FontWeight="Bold">Memory:</Label>
             <Label x:Name="processmemory" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left"/>
@@ -16,10 +16,26 @@
             <Label x:Name="processtime" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left"/>
         </StackPanel>
         <Button x:Name="ShowProcesses" Content="Show" Click="ShowProcesses_Click"/>
-        <ScrollViewer Height="440">
-            <TreeView x:Name="ProcTreeView">
-            </TreeView>
-            <!--<TextBlock x:Name="ProcTextBlock"/>-->
-        </ScrollViewer>
+        <Button x:Name="StartNotepad" Content="Bloknot" Click="StartNotepad_Click"/>
+        <Button x:Name="StopNotepad" Content="Stop" Click="StopNotepad_Click"/>
+        <Button x:Name="StartEdit" Content="Edit" Click="StartEdit_Click"/>
+        <Button x:Name="StartBrowser" Content="Browser" Click="StartBrowser_Click"/>
+        <Button x:Name="StartCalc" Content="Calculator" Click="StartCalc_Click"/>
+        <Button x:Name="StopCalc" Content="Stop Calc" Click="StopCalc_Click"/>
+        <Button x:Name="StartSett" Content="Settings" Click="StartSett_Click"/>
+        <Button x:Name="StartDisp" Content="Dispetcher" Click="StartDisp_Click"/>
+        <StackPanel Orientation="Vertical">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer Height="300">
+                    <TreeView x:Name="ProcTreeView">
+                    </TreeView>
+                    <!--<TextBlock x:Name="ProcTextBlock"/>-->
+                </ScrollViewer>
+            </Grid>
+        </StackPanel>
     </StackPanel>
 </Window>

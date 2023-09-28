@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,7 +39,7 @@ namespace SPNP_12
             foreach (Process process in processes.OrderBy(p => p.ProcessName))
             {
                 allmemory += process.PrivateMemorySize64;
-                //proctime += process.TotalProcessorTime.TotalSeconds;
+                proctime += process.TotalProcessorTime.TotalSeconds;
                 if (prevName != process.ProcessName)
                 {
                     prevName = process.ProcessName + " | " + process.PrivateMemorySize64 + " bytes";
@@ -75,6 +76,60 @@ namespace SPNP_12
                 }
                 MessageBox.Show(message);
             }
+        }
+        Process? notepadProcess;
+        private void StartNotepad_Click(object sender, RoutedEventArgs e)
+        {
+           notepadProcess ??= Process.Start("notepad.exe");
+
+        }
+
+        private void StopNotepad_Click(object sender, RoutedEventArgs e)
+        {
+            notepadProcess?.Kill();
+            notepadProcess?.WaitForExit();
+            notepadProcess?.Dispose();
+            notepadProcess = null;
+        }
+
+        private void StartEdit_Click(object sender, RoutedEventArgs e)
+        {
+            String dir = AppContext.BaseDirectory;
+            int binPosition = dir.LastIndexOf("bin");
+            String projectRoot = dir[..binPosition];
+            notepadProcess ??= Process.Start(
+                "notepad.exe",
+                $"{projectRoot}ProcessWindow.xaml.cs");
+        }
+        Process? browserProcess;
+        private void StartBrowser_Click(object sender, RoutedEventArgs e)
+        {
+            browserProcess ??= Process.Start(
+                "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+                "");
+        }
+        Process? calculator;
+        private void StartCalc_Click(object sender, RoutedEventArgs e)
+        {
+            calculator ??= Process.Start("calc.exe");
+        }
+
+        private void StopCalc_Click(object sender, RoutedEventArgs e)
+        {
+            calculator?.CloseMainWindow();
+            calculator?.Kill(true);
+            calculator?.Dispose();
+            calculator = null;
+        }
+        Process? settings;
+        private void StartSett_Click(object sender, RoutedEventArgs e)
+        {
+            settings ??= Process.Start("control.exe");
+        }
+        Process? disp;
+        private void StartDisp_Click(object sender, RoutedEventArgs e)
+        {
+            disp ??= Process.Start("taskmgr.exe");
         }
     }
 }
