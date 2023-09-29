@@ -20,9 +20,35 @@ namespace SPNP_12
     /// </summary>
     public partial class ThreadingWindow : Window
     {
+        private static Mutex? mutex;
+        private const String mutexName = "SPNP_TW_MUTEX";
         public ThreadingWindow()
         {
+            CheckPreviousLunch();
             InitializeComponent();
+        }
+        private void CheckPreviousLunch()
+        {
+            try
+            {
+                mutex = Mutex.OpenExisting(mutexName);
+            }
+            catch { }
+            if (mutex != null)
+            {
+                if (!mutex.WaitOne(1))
+                {
+                    string message = "Another window";
+                    MessageBox.Show(message);
+                    mutex = null;
+                    throw new ApplicationException(message);
+                }
+            }
+            else mutex = new Mutex(true, mutexName);
+        }
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            mutex?.ReleaseMutex();
         }
         #region 1-2
         private void StopBtn1_Click(object sender, RoutedEventArgs e)

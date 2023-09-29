@@ -16,18 +16,40 @@ using System.Windows.Threading;
 
 namespace SPNP_12
 {
-    /// <summary>
-    /// Логика взаимодействия для SynchroWindow.xaml
-    /// </summary>
     public partial class SynchroWindow : Window
     {
         private double sum;
         private int threadCount;
+        private static Mutex? mutex;
+        private const String mutexName = "SPNP_SW_MUTEX";
         public SynchroWindow()
         {
+            WaitOtherInstance();
             InitializeComponent();
         }
-
+        private void WaitOtherInstance()
+        {
+            try { mutex = Mutex.OpenExisting(mutexName); } catch { }
+            if (mutex == null)
+            {
+                mutex = new Mutex(true, mutexName);
+            }
+            else
+            {
+                if (!mutex.WaitOne(1))
+                {
+                    if (new CountDownWindow(mutex).ShowDialog() == false)
+                    {
+                        throw new ApplicationException();
+                    }
+                    mutex.WaitOne();
+                }
+            }
+        }
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            mutex?.ReleaseMutex();
+        }
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
             sum = 100;
