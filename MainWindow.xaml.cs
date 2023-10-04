@@ -59,5 +59,19 @@ namespace SPNP_12
             try { new ProcessWindow().ShowDialog(); } catch { }
             this.Show();
         }
+
+        private void ChainingBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            try { new ChainingWindow().ShowDialog(); } catch { }
+            this.Show();
+        }
+
+        private void DLLBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+           new DllWindow().ShowDialog();
+            this.Show();
+        }
     }
 }
