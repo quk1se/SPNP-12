@@ -32,6 +32,7 @@
             <Button Content="Stop" x:Name="StopBtn12" Click="StopBtn12_Click"/>
         </StackPanel>
         <Button x:Name="StartBtn3" Content="Start" Click="StartBtn3_Click"></Button>
+        <Button x:Name="StopBtn3" Content="Stop" Click="StopBtn3_Click"></Button>
         <TextBlock x:Name="LogTextBlock"/>
     </StackPanel>
 </Window>

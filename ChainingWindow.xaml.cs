@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,42 +66,59 @@ namespace SPNP_12
             await task21; var task22 = showProgress(ProgressBar22);
             await task22; var task23 = showProgress(ProgressBar32);
         }
-
+        CancellationTokenSource cts;
         private void StartBtn3_Click(object sender, RoutedEventArgs e)
         {
+            cts = new CancellationTokenSource();
+            LogTextBlock.Text = "";
             String str = "";
-            var text = AddHello(str)
-                .ContinueWith(task =>
+            try
             {
-                String res = task.Result;
-                Dispatcher.Invoke(() => LogTextBlock.Text = res);
-                return AddWorld(res);
-            })
+                var text = AddHello(str)
+                .ContinueWith(task =>
+                {
+                    String res = task.Result;
+                    Dispatcher.Invoke(() => LogTextBlock.Text = res);
+                    return AddWorld(res);
+                }, cts.Token)
                 .Unwrap()
                 .ContinueWith(task2 =>
-            {
-                String res = task2.Result;
-                Dispatcher.Invoke(() => LogTextBlock.Text = res);
-                return AddSymbol(res);
-            })
+                {
+                    String res = task2.Result;
+                    Dispatcher.Invoke(() => LogTextBlock.Text = res);
+                    return AddSymbol(res);
+                }, cts.Token)
                 .Unwrap()
                 .ContinueWith(task =>
-                Dispatcher.Invoke(() => LogTextBlock.Text = task.Result));
+                Dispatcher.Invoke(() => LogTextBlock.Text = task.Result), cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }   
         }
         async Task<String> AddHello(String str)
         {
             await Task.Delay(1000);
-            return str + " Hello ";
+            if (!cts.Token.IsCancellationRequested) return str + " Hello ";
+            else return "";
         }
         async Task<String> AddWorld(String str)
         {
             await Task.Delay(1000);
-            return str + " World ";
+            if (!cts.Token.IsCancellationRequested) return str + " World ";
+            else return "";
         }
         async Task<String> AddSymbol(String str)
         {
             await Task.Delay(1000);
-            return str + " ! ";
+            if (!cts.Token.IsCancellationRequested) return str + " ! ";
+            else return "";
+        }
+
+        private void StopBtn3_Click(object sender, RoutedEventArgs e)
+        {
+            cts.Cancel();
         }
     }
 }
